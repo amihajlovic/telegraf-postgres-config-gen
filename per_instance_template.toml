@@ -1,3 +1,10 @@
+[[inputs.cloudwatch]]
+region = "eu-west-1"
+period = "2m"
+delay = "2m"
+interval = "2m"
+namespace = "AWS/RDS"
+
 [[inputs.cloudwatch.metrics]]
 names = ["BurstBalance","CPUCreditBalance","CPUCreditUsage","CPUSurplusCreditBalance","CPUSurplusCreditsCharged","CPUUtilization","DBLoad","DBLoadCPU","DBLoadNonCPU","DatabaseConnections","DiskQueueDepth","FreeStorageSpace","FreeableMemory","MaximumUsedTransactionIDs","NetworkReceiveThroughput","NetworkTransmitThroughput","OldestReplicationSlotLag","ReadIOPS","ReadLatency","ReadThroughput","ReplicaLag","ReplicationSlotDiskUsage","SwapUsage","TransactionLogsDiskUsage","TransactionLogsGeneration","WriteIOPS","WriteLatency","WriteThroughput"]
 [[inputs.cloudwatch.metrics.dimensions]]
@@ -25,4 +32,11 @@ value = "${DbInstanceName}"
   sqlquery="select setting as shared_buffers from pg_settings where name='shared_buffers'"
   withdbname=false
   tagvalue=""
+
+[[inputs.postgresql_extensible.query]]
+  script="${TelegrafDPath}/per_instance_queries/long_running_queries.sql"
+  withdbname=false
+  tagvalue="state,wait_event,wait_event_type,datname,usename,application_name,client_addr,client_hostname"
+  measurement="postgresql_query_activity"
+  timestamp="query_start"
 

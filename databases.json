@@ -1,7 +1,7 @@
 [
     {
         "hostname": "selecta-01-master01.cco5ohbbhtip.eu-west-1.rds.amazonaws.com",
-        "instanceName": "selecta-01-master",
+        "instanceName": "selecta-01-master01",
         "databases": [
             {
                 "type": "cloud",
@@ -11,6 +11,179 @@
             {
                 "type": "route",
                 "name": "route"
+            }
+        ]
+    },
+    {
+        "hostname": "selecta-01-slave02.cco5ohbbhtip.eu-west-1.rds.amazonaws.com",
+        "instanceName": "selecta-01-slave02"       
+    },
+    {
+        "hostname": "selecta-02-master-01x.cco5ohbbhtip.eu-west-1.rds.amazonaws.com",
+        "instanceName": "selecta-02-master-01x",
+        "databases": [
+            {
+                "type": "cloud",
+                "name": "selecta_fr"
+            },
+            
+            {
+                "type": "route",
+                "name": "route"
+            }
+        ]
+    },
+    {
+        "hostname": "selecta-02-slave02.cco5ohbbhtip.eu-west-1.rds.amazonaws.com",
+        "instanceName": "selecta-02-slave02"       
+    },
+    {
+        "hostname": "selecta-03-master01.cco5ohbbhtip.eu-west-1.rds.amazonaws.com",
+        "instanceName": "selecta-03-master01",
+        "databases": [
+            {
+                "type": "cloud",
+                "name": "selecta_north"
+            },
+            
+            {
+                "type": "route",
+                "name": "route"
+            }
+        ]
+    },
+    {
+        "hostname": "selecta-03-slave02.cco5ohbbhtip.eu-west-1.rds.amazonaws.com",
+        "instanceName": "selecta-03-slave02"       
+    },
+    {
+        "hostname": "televendcloud-master01.cco5ohbbhtip.eu-west-1.rds.amazonaws.com",
+        "instanceName": "televendcloud-master01",
+        "databases": [
+            {
+                "type": "cloud",
+                "name": "televend"
+            },
+            
+            {
+                "type": "route",
+                "name": "route"
+            }
+        ]
+    },
+    {
+        "hostname": "televendcloud-slave02.cco5ohbbhtip.eu-west-1.rds.amazonaws.com",
+        "instanceName": "televendcloud-slave02"       
+    },
+    {
+        "hostname": "prod-evoca-01.cco5ohbbhtip.eu-west-1.rds.amazonaws.com",
+        "instanceName": "prod-evoca-01",
+        "databases": [
+            {
+                "type": "cloud",
+                "name": "cloud"
+            },            
+            {
+                "type": "route",
+                "name": "route"
+            },            
+            {
+                "type": "rb",
+                "name": "reports"
+            }
+        ]
+    },
+    {
+        "hostname": "reports-master01.cco5ohbbhtip.eu-west-1.rds.amazonaws.com",
+        "instanceName": "reports-master01",
+        "databases": [
+            {
+                "type": "rb",
+                "name": "reports_production_20161013"
+            },            
+            {
+                "type": "rb",
+                "name": "reports_selecta_ch_20161013"
+            },            
+            {
+                "type": "rb",
+                "name": "reports_selecta_fr_20161013"
+            },            
+            {
+                "type": "rb",
+                "name": "reports_selecta_north_20161118"
+            }
+        ]
+    },
+    {
+        "hostname": "prod-billing-01.cco5ohbbhtip.eu-west-1.rds.amazonaws.com",
+        "instanceName": "prod-billing-01",
+        "databases": [
+            {
+                "type": "billing",
+                "name": "billing"
+            },            
+            {
+                "type": "billing",
+                "name": "billing2"
+            }
+        ]
+    },
+    {
+        "hostname": "prod-intis-odoo-1.cco5ohbbhtip.eu-west-1.rds.amazonaws.com",
+        "instanceName": "prod-intis-odoo-1",
+        "databases": [
+            {
+                "type": "covid",
+                "name": "covid19"
+            },            
+            {
+                "type": "covid",
+                "name": "covid19_st"
+            },            
+            {
+                "type": "odoo",
+                "name": "odoo"
+            }
+        ]
+    },
+    {
+        "hostname": "prod-picknpack-01.cco5ohbbhtip.eu-west-1.rds.amazonaws.com",
+        "instanceName": "prod-picknpack-01",
+        "databases": [
+            {
+                "type": "picknpack",
+                "name": "picknpack"
+            }
+        ]
+    },
+    {
+        "hostname": "prod-selecta02-wallet.cco5ohbbhtip.eu-west-1.rds.amazonaws.com",
+        "instanceName": "prod-selecta02-wallet",
+        "databases": [
+            {
+                "type": "wallet",
+                "name": "wallet2"
+            }
+        ]
+    },
+    {
+        "hostname": "prod-selecta03-wallet.cco5ohbbhtip.eu-west-1.rds.amazonaws.com",
+        "instanceName": "prod-selecta03-wallet",
+        "databases": [
+            {
+                "type": "wallet",
+                "name": "wallet2"
+            }
+        ]
+    },
+    {
+        "hostname": "tc-wallet-master01.cco5ohbbhtip.eu-west-1.rds.amazonaws.com",
+        "instanceName": "tc-wallet-master01",
+        "databases": [
+            {
+                "type": "wallet",
+                "name": "wallet2"
             }
         ]
     }

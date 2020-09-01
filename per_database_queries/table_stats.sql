@@ -76,7 +76,7 @@ estimates_with_toast AS (
         expected_bytes + ( ceil( coalesce(toast.reltuples, 0) / 4 ) * bs ) as expected_bytes
 
         
-        , pg_indexes_size(oid)                AS index_bytes
+        , pg_indexes_size(table_estimates.oid)                AS index_bytes
         , pg_total_relation_size(table_estimates.reltoastrelid) AS toast_bytes
 
                                   
@@ -128,16 +128,12 @@ bloat_data AS (
 )
 SELECT 
     clock_timestamp()::date as "Timestamp",
-    schemaname, 
-    tablename,
-    can_estimate,
-    est_rows,
-    pct_bloat, 
-    mb_bloat,
-    table_mb,
-    toast_mb,
-    index_mb
+    schemaname AS table_schema, 
+    tablename AS table_name,
+    est_rows::float8,
+    pct_bloat::float8, 
+    mb_bloat::float8,
+    table_mb::float8,
+    toast_mb::float8,
+    index_mb::float8
 FROM bloat_data
-where 
-	table_mb > 50
-order by pct_bloat desc nulls last

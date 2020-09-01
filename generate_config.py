@@ -20,6 +20,9 @@ def main():
     dbUser = args.db_user
     dbUserPassword = args.db_user_password
     dryrun = args.dryrun
+    
+    rootPath = os.path.dirname(os.path.abspath(__file__))
+
 
 
     databaseInstances = json.loads(open("databases.json", "r").read(), object_hook=lambda d: Namespace(**d))
@@ -31,16 +34,18 @@ def main():
             DbInstanceName = databaseInstance.instanceName,
             DbInstanceHostname = databaseInstance.hostname,
             DbUser = dbUser,
-            DbUserPassword = dbUserPassword
+            DbUserPassword = dbUserPassword,
+            TelegrafDPath = rootPath
         )
 
         instanceConfig = perInstanceTemplate.substitute(instanceConfigMap)
-
-        for database in databaseInstance.databases:
-            databaseConfigMap = dict(instanceConfigMap)
-            databaseConfigMap["DatabaseName"] = database.name
-            databaseConfig = perDatabaseTemplate.substitute(databaseConfigMap)
-            instanceConfig += "\n" + databaseConfig
+        
+        if hasattr(databaseInstance, 'databases'):
+            for database in databaseInstance.databases:
+                databaseConfigMap = dict(instanceConfigMap)
+                databaseConfigMap["DatabaseName"] = database.name
+                databaseConfig = perDatabaseTemplate.substitute(databaseConfigMap)
+                instanceConfig += "\n" + databaseConfig
 
         if not dryrun:
             configFile = open(databaseInstance.instanceName + ".conf", "w")

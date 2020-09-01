@@ -3,15 +3,15 @@
   outputaddress = "${DbInstanceName}"
 
 [[inputs.postgresql_extensible.query]]
-  script="per_database_queries/index_stats.sql"
+  script="${TelegrafDPath}/per_database_queries/index_stats.sql"
   withdbname=false
   tagvalue="table_schema,table_name,index_name"
   measurement="postgresql_index_stats"
   timestamp="Timestamp"
 
 [[inputs.postgresql_extensible.query]]
-  script="per_database_queries/table_stats.sql"
+  script="${TelegrafDPath}/per_database_queries/table_stats.sql"
   withdbname=false
-  tagvalue="table_schema,table_name,index_name"
+  tagvalue="table_schema,table_name"
   measurement="postgresql_table_stats"
   timestamp="Timestamp"

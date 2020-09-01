@@ -6,7 +6,6 @@ SELECT
     , real_size_mb
     , extra_mb
     , extra_ratio
-    , ((extra_mb * 100.0) / (real_size_mb - extra_mb))::numeric(6,2) ratio2
     , fillfactor
     , bloat_mb
     , bloat_ratio
@@ -192,7 +191,3 @@ FROM
 
 WHERE
     table_schema NOT IN ('pg_catalog', 'information_schema')
-    and real_size_mb > 100
-    and bloat_ratio > 70
-ORDER BY
-    bloat_ratio DESC
