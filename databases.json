@@ -1,0 +1,17 @@
+[
+    {
+        "hostname": "selecta-01-master01.cco5ohbbhtip.eu-west-1.rds.amazonaws.com",
+        "instanceName": "selecta-01-master",
+        "databases": [
+            {
+                "type": "cloud",
+                "name": "selecta_ch"
+            },
+            
+            {
+                "type": "route",
+                "name": "route"
+            }
+        ]
+    }
+]

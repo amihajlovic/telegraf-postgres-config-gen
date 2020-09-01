@@ -1,0 +1,28 @@
+[[inputs.cloudwatch.metrics]]
+names = ["BurstBalance","CPUCreditBalance","CPUCreditUsage","CPUSurplusCreditBalance","CPUSurplusCreditsCharged","CPUUtilization","DBLoad","DBLoadCPU","DBLoadNonCPU","DatabaseConnections","DiskQueueDepth","FreeStorageSpace","FreeableMemory","MaximumUsedTransactionIDs","NetworkReceiveThroughput","NetworkTransmitThroughput","OldestReplicationSlotLag","ReadIOPS","ReadLatency","ReadThroughput","ReplicaLag","ReplicationSlotDiskUsage","SwapUsage","TransactionLogsDiskUsage","TransactionLogsGeneration","WriteIOPS","WriteLatency","WriteThroughput"]
+[[inputs.cloudwatch.metrics.dimensions]]
+name = "DBInstanceIdentifier"
+value = "${DbInstanceName}"
+
+
+[[inputs.postgresql_extensible]]
+  address = "host=${DbInstanceHostname} user=${DbUser} password=${DbUserPassword} sslmode=disable database=postgres"
+  outputaddress = "${DbInstanceName}"
+
+[[inputs.postgresql_extensible.query]]
+  sqlquery="SELECT * FROM pg_stat_database"
+  withdbname=false
+  tagvalue=""
+[[inputs.postgresql_extensible.query]]
+  sqlquery="SELECT * FROM pg_stat_bgwriter"
+  withdbname=false
+  tagvalue=""
+[[inputs.postgresql_extensible.query]]
+  sqlquery="select setting as max_connections from pg_settings where name='max_connections'"
+  withdbname=false
+  tagvalue=""
+[[inputs.postgresql_extensible.query]]
+  sqlquery="select setting as shared_buffers from pg_settings where name='shared_buffers'"
+  withdbname=false
+  tagvalue=""
+

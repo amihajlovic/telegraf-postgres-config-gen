@@ -1,0 +1,17 @@
+[[inputs.postgresql_extensible]]
+  address = "host=${DbInstanceHostname} user=${DbUser} password=${DbUserPassword} sslmode=disable database=${DatabaseName}"
+  outputaddress = "${DbInstanceName}"
+
+[[inputs.postgresql_extensible.query]]
+  script="per_database_queries/index_stats.sql"
+  withdbname=false
+  tagvalue="table_schema,table_name,index_name"
+  measurement="postgresql_index_stats"
+  timestamp="Timestamp"
+
+[[inputs.postgresql_extensible.query]]
+  script="per_database_queries/table_stats.sql"
+  withdbname=false
+  tagvalue="table_schema,table_name,index_name"
+  measurement="postgresql_table_stats"
+  timestamp="Timestamp"
